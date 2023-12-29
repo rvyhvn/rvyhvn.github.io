@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 6.0.1 | Copyright Dean Attali 2023 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>How to integrate Django with Vue without REST API</title>
+
+  
+  
+  <meta name="author" content="Hanshi">
+  
+
+  <meta name="description" content="How to get Django working with Vue via Inertia.js">
+
+  
+
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="Hanshi's Blog" href="/feed.xml">
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Hanshi's Blog">
+  <meta property="og:title" content="How to integrate Django with Vue without REST API">
+  <meta property="og:description" content="How to get Django working with Vue via Inertia.js">
+
+  
+  <meta property="og:image" content="/assets/img/avatar-icon.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  
+  <meta property="og:article:author" content="Hanshi">
+  
+  <meta property="og:article:published_time" content="2023-12-30T00:00:00+07:00">
+  <meta property="og:url" content="/2023-12-30-django-vue-inertia/">
+  <link rel="canonical" href="/2023-12-30-django-vue-inertia/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="How to integrate Django with Vue without REST API">
+  <meta property="twitter:description" content="How to get Django working with Vue via Inertia.js">
+
+  
+  <meta name="twitter:image" content="/assets/img/avatar-icon.png">
+  
+
+  
+
+
+  
+
+  
+  
+
+  
+
+</head>
+
+
+<body>
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" href="/">Hanshi's Blog</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/aboutme">About Me</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+            </div>
+          </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" id="nav-search-link" href="#" title="Search">
+            <span id="nav-search-icon" class="fa fa-search"></span>
+            <span id="nav-search-text">Search</span>
+          </a>
+        </li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        <a href="/">
+          <img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />
+        </a>
+      </div>
+    </div>
+  
+
+</nav>
+
+
+
+<div id="beautifuljekyll-search-overlay">
+
+  <div id="nav-search-exit" title="Exit search">✕</div>
+  <input type="text" id="nav-search-input" placeholder="Search">
+  <ul id="search-results-container"></ul>
+  
+  <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+  <script>
+    var searchjson = '[ \
+       \
+        { \
+          "title"    : "How to integrate Django with Vue without REST API", \
+          "desc"     : "How to integrate Django with Vue without REST API", \
+          "category" : "programmingweb development", \
+          "url"      : "/2023-12-30-django-vue-inertia/", \
+          "date"     : "December 30, 2023" \
+        }, \
+       \
+        { \
+          "title"    : "Sample blog post to learn markdown tips", \
+          "desc"     : "Sample blog post to learn markdown tips", \
+          "category" : "test", \
+          "url"      : "/2020-02-28-sample-markdown/", \
+          "date"     : "February 28, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Flake it till you make it", \
+          "desc"     : "Flake it till you make it", \
+          "category" : "bookstest", \
+          "url"      : "/2020-02-26-flake-it-till-you-make-it/", \
+          "date"     : "February 26, 2020" \
+        }, \
+       \
+       \
+        { \
+          "title"    : "About me", \
+          "desc"     : "About me", \
+          "category" : "page", \
+          "url"      : "/aboutme/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "Hanshi&#39;s Blog", \
+          "desc"     : "Hanshi&#39;s Blog", \
+          "category" : "page", \
+          "url"      : "/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "Tag Index", \
+          "desc"     : "Tag Index", \
+          "category" : "page", \
+          "url"      : "/tags/", \
+          "date"     : "January 1, 1970" \
+        } \
+       \
+    ]';
+    searchjson = JSON.parse(searchjson);
+
+    var sjs = SimpleJekyllSearch({
+      searchInput: document.getElementById('nav-search-input'),
+      resultsContainer: document.getElementById('search-results-container'),
+      json: searchjson
+    });
+  </script>
+</div>
+
+
+
+
+
+  
+
+
+
+<header class="header-section ">
+<div class="intro-header ">
+  
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+        <div class="post-heading">
+          <h1>How to integrate Django with Vue without REST API</h1>
+          
+            
+              <h2 class="post-subheading">How to get Django working with Vue via Inertia.js</h2>
+            
+          
+          
+           
+            
+            <span class="post-meta">Posted on December 30, 2023</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+
+
+
+</header>
+
+
+<main class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">
+
+      
+
+      
+
+      <div class="blog-post">
+        <p>Django, the web framework for perfectionists with deadlines. Based on Django’s official site, Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source. In the other hand, Vue.js based on the official site is an approachable, performant and versatile framework for building web user interfaces. But how to work with these two if you only want to make a monolith SaaS without API? And there’s come Inertia.js which is a new approach to building classic server-driven web apps. Based on the Inerita.js’s official docs, Inertia allows you to create fully client-side rendered, single-page apps, without the complexity that comes with modern SPAs. It does this by leveraging existing server-side patterns that you already love.</p>
+<h2 id="prequisites">Prequisites</h2>
+<p>I recommend to you guys to have a virtual environment for each of projects you made because using virtual environments is considered a best practice as it prevents package version conflicts between projects that require different module versions. For example, Project A may require Selenium 3.x while Project B relies on Selenium 4.x. With virtual environments, you can install Selenium 3.x for Project A and Selenium 4.x for Project B without compatibility issues.</p>
+
+<p>So, let’s begin! I work with Linux/GNU Debian environment here so I’m just giving how you do on UNIX based operating systems. First, just create a directory name for the project such as <code class="language-plaintext highlighter-rouge">my_project</code> and <code class="language-plaintext highlighter-rouge">cd</code> to that directory. Create a Python virtual environment with <code class="language-plaintext highlighter-rouge">python -m venv &lt;venv_name&gt;</code>, in this example let’s just call it <code class="language-plaintext highlighter-rouge">.venv</code> since it’s a standard convention. Source the virtual environment by executing <code class="language-plaintext highlighter-rouge">source .venv/bin/activate</code>. Install the required packages for creating the project. Install the packages one by one:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install django
+pip install inertia-django
+pip install django-vite
+pip install django-js-routes
+</code></pre></div></div>
+<p>And simply create the project by executing <code class="language-plaintext highlighter-rouge">django-admin startproject my_project .</code> the dot tells Django to create the project in the current directory and not in a sub-directory. Let’s head up to the back-end side.</p>
+<h2 id="back-end">Back-end</h2>
+<p>We have to configure the back-end first.</p>
+<h3 id="configurations">Configurations</h3>
+<p>Once you are already in the project, you could configure the <code class="language-plaintext highlighter-rouge">settings.py</code>  inside the <code class="language-plaintext highlighter-rouge">my_project</code> sub-directory. In this file, add the inertia-django, django-vite and django-js-routes.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="p">...</span>
+    <span class="s">"django.contrib.staticfiles"</span><span class="p">,</span>
+    <span class="s">"django_vite"</span><span class="p">,</span>
+    <span class="s">"inertia"</span><span class="p">,</span>
+    <span class="s">"js_routes"</span><span class="p">,</span>
+<span class="p">]</span>
+</code></pre></div></div>
+<p>Also add the Inertia’s middleware:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MIDDLEWARE</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="p">...</span>
+    <span class="s">"django.middleware.clickjacking.XFrameOptionsMiddleware"</span><span class="p">,</span>
+    <span class="s">'inertia.middleware.InertiaMiddleware'</span><span class="p">,</span>
+<span class="p">]</span>
+</code></pre></div></div>
+<p>You could change the database you want to use in the <code class="language-plaintext highlighter-rouge">DATABASES</code> variable. See <a href="https://docs.djangoproject.com/en/4.2/ref/settings/#databases">Django Database Configurations</a>, but in this tutorial I prefer to use the default database, sqlite3.
+In the <code class="language-plaintext highlighter-rouge">TEMPLATES</code> variable, add a value <code class="language-plaintext highlighter-rouge">"templates"</code> in the <code class="language-plaintext highlighter-rouge">"DIRS"</code> key of the dictionary.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s">'BACKEND'</span><span class="p">:</span> <span class="s">'django.template.backends.django.DjangoTemplates'</span><span class="p">,</span>
+        <span class="s">'DIRS'</span><span class="p">:</span> <span class="p">[</span><span class="s">"templates"</span><span class="p">],</span> <span class="c1"># &lt;- Add this
+</span>        <span class="s">'APP_DIRS'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="s">'OPTIONS'</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">'context_processors'</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s">'django.template.context_processors.debug'</span><span class="p">,</span>
+                <span class="s">'django.template.context_processors.request'</span><span class="p">,</span>
+                <span class="s">'django.contrib.auth.context_processors.auth'</span><span class="p">,</span>
+                <span class="s">'django.contrib.messages.context_processors.messages'</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+</code></pre></div></div>
+<p>Copy this lines below the <code class="language-plaintext highlighter-rouge">STATIC_URL</code> variable.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s">"static"</span>
+<span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s">"web"</span> <span class="o">/</span> <span class="s">"dist"</span>
+<span class="p">]</span>
+</code></pre></div></div>
+<p>Copy the Vite’s configuration below the <code class="language-plaintext highlighter-rouge">DEFAULT_AUTO_FIELD</code> variable.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DJANGO_VITE_DEV_MODE</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">DJANGO_VITE_ASSETS_PATH</span> <span class="o">=</span> <span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s">"web"</span> <span class="o">/</span> <span class="s">"dist"</span>
+<span class="c1"># This tells Django to load the manifest from the front end build folder
+# Comment it out if you run python manage.py collectstatic
+</span><span class="n">DJANGO_VITE_MANIFEST_PATH</span> <span class="o">=</span> <span class="n">DJANGO_VITE_ASSETS_PATH</span> <span class="o">/</span> <span class="s">"manifest.json"</span>
+<span class="n">DJANGO_VITE_DEV_SERVER_PORT</span> <span class="o">=</span> <span class="mi">5173</span>
+<span class="n">STATICFILES_DIRS</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">DJANGO_VITE_ASSETS_PATH</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Copy the Inertia’s configuration below the Vite’s configurations.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CSRF_HEADER_NAME</span> <span class="o">=</span> <span class="s">'HTTP_X_XSRF_TOKEN'</span>
+<span class="n">CSRF_COOKIE_NAME</span> <span class="o">=</span> <span class="s">'XSRF-TOKEN'</span>
+<span class="n">INERTIA_LAYOUT</span> <span class="o">=</span> <span class="s">"base.html"</span>
+<span class="n">INERTIA_VERSION</span> <span class="o">=</span> <span class="s">"1.0"</span>
+<span class="n">INERTIA_SSR_ENABLED</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">INERTIA_SSR_URL</span> <span class="o">=</span> <span class="s">"http://localhost:13714"</span>
+</code></pre></div></div>
+<p>Copy the configurations for <a href="https://pypi.org/project/django-js-routes/">django-js-routes</a>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">JS_ROUTES_INCLUSION_LIST</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">"example"</span>
+<span class="p">]</span>
+</code></pre></div></div>
+<h3 id="create-an-app">Create An App</h3>
+<p>We gonna make an example of an app by using <code class="language-plaintext highlighter-rouge">python manage.py startapp &lt;example_app&gt;</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── db.sqlite3
+├── example_app
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── LICENSE
+├── manage.py
+├── README.md
+├── templates
+└── my_project
+    ├── __init__.py
+    ├── asgi.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+</code></pre></div></div>
+<p>Add the application that we made in to the <code class="language-plaintext highlighter-rouge">INSTALLED_APPS</code> in <code class="language-plaintext highlighter-rouge">settings.py</code>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">...</span>
+    <span class="s">"inertia"</span><span class="p">,</span>
+    <span class="s">"js_routes"</span><span class="p">,</span>
+    <span class="s">"example_app"</span><span class="p">,</span>  <span class="c1"># Our example_app
+</span><span class="p">]</span>
+</code></pre></div></div>
+<p>Now, we’re all set in the back-end.</p>
+<h2 id="front-end">Front-end</h2>
+<p>Let’s get to the front-end.</p>
+<h3 id="create-the-base-template">Create The Base Template</h3>
+<p>We have to create the base template for Django to load the JavaScript components. Create <code class="language-plaintext highlighter-rouge">templates/</code> folder in the root directory of the project, and make a <code class="language-plaintext highlighter-rouge">_base.html</code> file inside the template folder.
+<img src="https://i.imgur.com/NOwQEc8.png" alt="base.html" /></p>
+<h3 id="create-the-vite-app">Create The Vite App</h3>
+<p>In the root project directory, run <code class="language-plaintext highlighter-rouge">npm create vite@latest</code>, in this example the project name would be called “web” because we already declared it in the <code class="language-plaintext highlighter-rouge">STATICFILE_DIRS</code> variable in <code class="language-plaintext highlighter-rouge">settings.py</code>.
+<img src="https://i.imgur.com/0SC6uPT.png" alt="npm create vite@latest" /></p>
+<h3 id="configure-entry-point">Configure Entry Point</h3>
+<p>Okay,  then go to the project directory, so <code class="language-plaintext highlighter-rouge">cd web</code> and then run <code class="language-plaintext highlighter-rouge">npm i @inertiajs/vue3</code>. Head up to <code class="language-plaintext highlighter-rouge">src/main.js</code> and then replace the script inside with:</p>
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import { createApp, h } from 'vue'
+import { createInertiaApp } from '@inertiajs/vue3'
+
+createInertiaApp({
+  resolve: name =&gt; {
+    const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
+    return pages[`./Pages/${name}.vue`]
+  },
+  setup({ el, App, props, plugin }) {
+    createApp({ render: () =&gt; h(App, props) })
+      .use(plugin)
+      .mount(el)
+  },
+})
+</code></pre></div></div>
+<h3 id="configure-vites-config">Configure Vite’s Config</h3>
+<p>And replace the script inside the <code class="language-plaintext highlighter-rouge">vite.config.js</code> with this:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vite</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">vue</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@vitejs/plugin-vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">resolve</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">path</span><span class="dl">'</span>
+
+<span class="c1">// https://vitejs.dev/config/</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">defineConfig</span><span class="p">({</span>
+  <span class="na">base</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/static/</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span><span class="nx">vue</span><span class="p">()],</span>
+  <span class="na">build</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">outDir</span><span class="p">:</span> <span class="nx">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">./dist</span><span class="dl">'</span><span class="p">),</span>
+    <span class="na">manifest</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">rollupOptions</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">input</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./src/main.js</span><span class="dl">'</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="na">server</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">origin</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://localhost:5173</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">cors</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">allowedHeaders</span><span class="p">:</span> <span class="dl">'</span><span class="s1">*</span><span class="dl">'</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+<h3 id="create-a-page">Create A Page</h3>
+<p>The configurations are all done, let’s make some pages inside <code class="language-plaintext highlighter-rouge">Pages/</code> folder, create the <code class="language-plaintext highlighter-rouge">Pages/</code> folder first inside the <code class="language-plaintext highlighter-rouge">src/</code> directory: <code class="language-plaintext highlighter-rouge">mkdir src/Pages/</code> and then create let’s say <code class="language-plaintext highlighter-rouge">App.vue</code> inside the <code class="language-plaintext highlighter-rouge">Pages/</code> like this:</p>
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Welcome!<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Welcome to Django + Vue application.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">style</span><span class="nt">&gt;</span>
+<span class="nc">.app</span> <span class="p">{</span>
+  <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+  <span class="nl">margin-top</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">style</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+<p>Okay, the front-end all are set. Let’s make the route!</p>
+<h2 id="integrate-django-with-inertia">Integrate Django With Inertia</h2>
+<h3 id="configure-the-apps-view">Configure The App’s View</h3>
+<p>Head up to <code class="language-plaintext highlighter-rouge">example_app/views.py</code> and make a logic to render the pages inside <code class="language-plaintext highlighter-rouge">Pages/</code> in the front-end. We could do it like this:</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># example_app/views.py
+</span><span class="kn">from</span> <span class="nn">inertia</span> <span class="kn">import</span> <span class="n">render</span>
+
+
+<span class="k">def</span> <span class="nf">app_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"App"</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">{</span><span class="s">"inertia"</span><span class="p">:</span> <span class="bp">True</span><span class="p">})</span>
+</code></pre></div></div>
+<h3 id="configure-the-apps-route">Configure The App’s Route</h3>
+<p>Create <code class="language-plaintext highlighter-rouge">urls.py</code> inside <code class="language-plaintext highlighter-rouge">example_app/</code> and paste this:</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># example_app/urls.py
+</span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">.views</span> <span class="kn">import</span> <span class="n">app_view</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="n">app_view</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">"app"</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+<h3 id="configure-the-main-route">Configure The Main Route</h3>
+<p>Now head up to <code class="language-plaintext highlighter-rouge">urls.py</code> inside the <code class="language-plaintext highlighter-rouge">my_project</code> directory and copy this:</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># my_project/urls.py
+</span><span class="kn">from</span> <span class="nn">django.conf.urls.static</span> <span class="kn">import</span> <span class="n">static</span>
+<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s">'admin/'</span><span class="p">,</span> <span class="n">admin</span><span class="p">.</span><span class="n">site</span><span class="p">.</span><span class="n">urls</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s">"example_app.urls"</span><span class="p">))</span>
+<span class="p">]</span> <span class="o">+</span> <span class="n">static</span><span class="p">(</span><span class="n">settings</span><span class="p">.</span><span class="n">STATIC_URL</span><span class="p">,</span> <span class="n">document_root</span><span class="o">=</span><span class="n">settings</span><span class="p">.</span><span class="n">STATIC_ROOT</span><span class="p">)</span>
+</code></pre></div></div>
+<h2 id="run-the-server">Run The Server</h2>
+<p>Run <code class="language-plaintext highlighter-rouge">python manage.py makemigrations</code> and <code class="language-plaintext highlighter-rouge">python manage.py migrate</code> then, create two terminals, one of the terminal runs <code class="language-plaintext highlighter-rouge">python manage.py runserver</code> and the other runs <code class="language-plaintext highlighter-rouge">npm run dev</code> inside the <code class="language-plaintext highlighter-rouge">web/</code> directory.</p>
+
+      </div>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#programming">programming</a>
+          
+            <a href="/tags#web development">web development</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a href="https://twitter.com/intent/tweet?text=How+to+integrate+Django+with+Vue+without+REST+API&url=%2F2023-12-30-django-vue-inertia%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2F2023-12-30-django-vue-inertia%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2F2023-12-30-django-vue-inertia%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2020-02-28-sample-markdown/" data-toggle="tooltip" data-placement="top" title="Sample blog post to learn markdown tips">
+            <i class="fas fa-arrow-left" alt="Previous Post"></i>
+            <span class="d-none d-sm-inline-block">Previous Post</span>
+          </a>
+        </li>
+        
+        
+      </ul>
+      
+  
+  
+  
+
+  
+
+
+  
+
+  
+
+
+
+    </div>
+  </div>
+</main>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+      
+<ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a href="mailto:hanshitrash00@proton.me" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a href="https://github.com/rvyhvn" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a href="https://www.youtube.com/@ilyhanshi" title="YouTube">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">YouTube</span>
+   </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+      
+        Hanshi
+        &nbsp;&bull;&nbsp;
+      
+      2023
+
+      
+
+      
+
+      
+
+      </p>
+      <p class="theme-by text-muted">
+        Powered by
+        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
