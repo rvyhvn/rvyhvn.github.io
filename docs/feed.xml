@@ -22,27 +22,5 @@
         <guid isPermaLink="true">/2023-12-30-django-vue-inertia/</guid>
       </item>
     
-      <item>
-        <title>Sample blog post to learn markdown tips</title>
-        <description>
-          There&apos;s lots to learn! - 
-          This is a demo post to show you how to write blog posts with markdown. I strongly encourage you to take 5 minutes to learn how to write in markdown - it’ll teach you how to transform regular text into bold/italics/tables/etc.I also encourage you to look at the code that...
-        </description>
-        <pubDate>Fri, 28 Feb 2020 00:00:00 +0700</pubDate>
-        <link>/2020-02-28-sample-markdown/</link>
-        <guid isPermaLink="true">/2020-02-28-sample-markdown/</guid>
-      </item>
-    
-      <item>
-        <title>Flake it till you make it</title>
-        <description>
-          Excerpt from Soulshaping by Jeff Brown - 
-          Under what circumstances should we step off a path? When is it essential that we finish what we start? If I bought a bag of peanuts and had an allergic reaction, no one would fault me if I threw it out. If I ended a relationship with a woman who...
-        </description>
-        <pubDate>Wed, 26 Feb 2020 00:00:00 +0700</pubDate>
-        <link>/2020-02-26-flake-it-till-you-make-it/</link>
-        <guid isPermaLink="true">/2020-02-26-flake-it-till-you-make-it/</guid>
-      </item>
-    
   </channel>
 </rss>
